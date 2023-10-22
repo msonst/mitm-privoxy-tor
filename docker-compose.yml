@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  tor:
+    build: 
+      context: ./tor
+      dockerfile: Dockerfile
+    ports:
+      - '9050:9050'
+      - "9051:9051"
+    container_name: tor
+    restart: always
+  privoxy:    
+    depends_on: 
+      - tor
+    build: 
+      context: ./privoxy
+      dockerfile: Dockerfile
+    ports:
+      - '8118:8118'
+    container_name: privoxy
+    restart: always
+  mitm:
+    depends_on: 
+      - privoxy
+    image: mitmproxy/mitmproxy
+    container_name: mitm
+    entrypoint: "mitmdump --mode upstream:http://privoxy:8118 -p 8080"
+    # networks:
+    #   - app-network
+    ports:
+      - '8080:8080'
+    restart: always
