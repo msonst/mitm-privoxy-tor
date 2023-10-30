@@ -3,10 +3,6 @@ FROM alpine:latest
 RUN apk update \
     && apk --no-cache add tor
 
-
-
-#RUN addgroup -S proxygroup && adduser -S proxyuser -G proxygroup
-
 COPY torrc /etc/tor/
 
 EXPOSE 9050/tcp 9051/tcp

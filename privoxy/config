@@ -820,7 +820,7 @@ listen-address  [::1]:8118
 #      ad blocking and content filtering disabled. See
 #      enable-remote-toggle below.
 #
-toggle  1
+toggle  0
 #
 #  4.3. enable-remote-toggle
 #  ==========================

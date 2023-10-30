@@ -24,9 +24,7 @@ services:
       - privoxy
     image: mitmproxy/mitmproxy
     container_name: mitm
-    entrypoint: "mitmdump --mode upstream:http://privoxy:8118 -p 8080"
-    # networks:
-    #   - app-network
+    entrypoint: "mitmdump --mode upstream:http://privoxy:8118 -p 8080  --set flow_detail=3 --showhost > outfile"
     ports:
       - '8080:8080'
     restart: always

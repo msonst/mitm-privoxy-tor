@@ -3,8 +3,6 @@ FROM alpine:latest
 RUN apk update \
     && apk --no-cache add privoxy
 
-#RUN addgroup -S privoxy && adduser -S privoxy -G privoxy
-
 COPY config /etc/privoxy/
 COPY user.filter /etc/privoxy/ 
 COPY default.filter /etc/privoxy/ 
