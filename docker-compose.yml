@@ -20,9 +20,9 @@ services:
     container_name: privoxy
     restart: always
   mitm:
-    depends_on: 
-      - privoxy
-    image: mitmproxy/mitmproxy
+    build: 
+      context: ./mitmproxy
+      dockerfile: Dockerfile
     container_name: mitm
     entrypoint: "mitmdump --mode upstream:http://privoxy:8118 -p 8080  --set flow_detail=3 --showhost > outfile"
     ports:
